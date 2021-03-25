@@ -17,7 +17,7 @@ def landing():
 @ppc.route('/item', methods=['GET'])
 def item():
     if request.args:
-        return str(request.args.getlist('id'))
+        return {i: items.get(i) for i in request.args.getlist('id')}
     else:
         return items
 
