@@ -3,23 +3,23 @@
 from flask import Flask
 from flask import request
 
-ppc = Flask(__name__)
-item = {'id': '', 'name': ''}  # TODO determine proper init values
-items = []  # populated via API
+
+ppc = Flask(__name__)  # one server serves them all
+
+items = {'1': 'one', '4': 'four'}  # populated via API
 
 
 @ppc.route('/')
-def lander():
+def landing():
     return "nothing to see here. Try /item"
 
 
-@ppc.route('/item')
+@ppc.route('/item', methods=['GET'])
 def item():
-    args = request.args
-    if args:
-        return f"hey! thanks for the args: {args}"
+    if request.args:
+        return str(request.args.getlist('id'))
     else:
-        return "hmm. no args."
+        return items
 
 
 if __name__ == '__main__':
