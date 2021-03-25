@@ -23,7 +23,7 @@ def item():
         items[request.form['id']] = request.form['val']
         return '200'
     elif request.method == 'DELETE':  # NOTE that DELETE is an HTTP construct, and not supported by html
-        items.pop(request.form['idx'])
+        items.pop(request.form['id'])
         return '200'
 
 
