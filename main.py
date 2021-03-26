@@ -1,4 +1,5 @@
-#! /bin/env python3
+#! python3
+"""POC code for an `item` interface"""
 
 from flask import Flask
 from flask import request
@@ -21,7 +22,7 @@ def item():
         return get_method()
     elif request.method == 'POST':
         items[request.form['id']] = request.form['val']
-        return '200'
+        return '201'
     elif request.method == 'DELETE':  # NOTE that DELETE is an HTTP construct, and not supported by html
         items.pop(request.form['id'])
         return '200'
@@ -36,4 +37,4 @@ def get_method():
 
 
 if __name__ == '__main__':
-    ppc.run()
+    ppc.run(port=3000)
